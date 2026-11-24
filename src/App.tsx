@@ -1,469 +1,170 @@
-
 import { useEffect, useState } from 'react';
-import './App.css';
+import type { ComponentType } from 'react';
+import * as BlogsModule from './Pages/Blogs/Blogs';
+
 import logo from './assets/Logo.png';
-import Blogs from './blogs';
-import About from './Aboutus/Aboutus';
 
-const services = [
-  {
-    number: '01',
-    title: 'EPR Compliance',
-    description:
-      'EPR registration, compliance management, annual returns and recycling certificate support.',
-    tag: 'EPR CONSULTANCY',
-  },
-  {
-    number: '02',
-    title: 'Environmental Licensing',
-    description:
-      'Guidance for CTE, CTO, hazardous waste authorization and environmental approvals.',
-    tag: 'REGULATORY APPROVALS',
-  },
-  {
-    number: '03',
-    title: 'Lithium-Ion Battery Recycling',
-    description:
-      'Technical consultancy, machinery planning, DPR and recycling plant development.',
-    tag: 'BATTERY RECYCLING',
-  },
-  {
-    number: '04',
-    title: 'E-Waste Recycling',
-    description:
-      'End-to-end assistance with e-waste recycling plant setup, licensing and machinery.',
-    tag: 'E-WASTE SOLUTIONS',
-  },
-  {
-    number: '05',
-    title: 'Plastic Waste Recycling',
-    description:
-      'Consultancy for PET, HDPE, LDPE and PP recycling projects and regulatory compliance.',
-    tag: 'PLASTIC RECYCLING',
-  },
-  {
-    number: '06',
-    title: 'CBG & Biogas Plant Setup',
-    description:
-      'Project planning, technology selection, feasibility analysis and CBG plant development.',
-    tag: 'RENEWABLE ENERGY',
-  },
-  {
-    number: '07',
-    title: 'DPR & Feasibility Reports',
-    description:
-      'Detailed project reports, financial feasibility, CAPEX, OPEX and project assessment.',
-    tag: 'PROJECT CONSULTANCY',
-  },
-  {
-    number: '08',
-    title: 'Recycling Plant Consultancy',
-    description:
-      'Technical planning and business consultancy for sustainable waste processing projects.',
-    tag: 'INDUSTRIAL PROJECTS',
-  },
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './Pages/Home/Home';
+import About from './Pages/Aboutus/Aboutus';
+import Industries from './Pages/Industries/Industries';
+import StickyContactForm from './components/stickyForm';
+// The existing Blogs.tsx currently has no default export.
+// This accepts a named Blogs/Blog/BlogPage export as well, if present.
+const blogExports = BlogsModule as unknown as {
+  default?: ComponentType;
+  Blogs?: ComponentType;
+  Blog?: ComponentType;
+  BlogPage?: ComponentType;
+};
+const BlogsPage =
+  blogExports.default ??
+  blogExports.Blogs ??
+  blogExports.BlogPage ??
+  blogExports.Blog;
+
+const contactBenefits = [
+  'Environmental Licensing',
+  'EPR Compliance',
+  'CBG & Biogas Plant Setup',
+  'Recycling Plant Consultancy',
+  'DPR & Feasibility Reports',
+  'Bank Loan Documentation',
 ];
 
-const industries: string[] = [
-  'Lithium-Ion Battery Recycling',
-  'E-Waste Recycling',
-  'Plastic Waste Management',
-  'CBG & Biogas Projects',
-  'Used Oil Recycling',
-  'Waste Processing',
-];
+function ContactPage() {
+  return (
+    <section className="min-h-[75vh] bg-gradient-to-br from-white via-primary-blue/5 to-primary-green/10 px-5 py-16 md:px-10 lg:px-20 lg:py-24">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_390px] lg:gap-16">
+        <div>
+          <span className="inline-block rounded-full bg-primary-green/15 px-4 py-2 text-xs font-extrabold tracking-wider text-dark-green">
+            CONTACT COMPLIANCE MATE
+          </span>
 
-function App() {
-  const [currentHash, setCurrentHash] = useState(
-    () => window.location.hash
+          <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-dark-blue md:text-5xl">
+            Let's Discuss
+            <span className="block text-primary-blue">Your Next Project.</span>
+          </h1>
+
+          <p className="mt-6 max-w-2xl text-base leading-8 text-text-color/75">
+            Looking for assistance with environmental compliance, licensing,
+            compressed biogas plant development or recycling projects?
+          </p>
+          <p className="mt-4 max-w-2xl text-base leading-8 text-text-color/75">
+            Compliance Mate provides consultancy and project planning support
+            to help businesses understand regulatory requirements and make
+            informed project decisions.
+          </p>
+
+          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {contactBenefits.map((benefit) => (
+              <div
+                key={benefit}
+                className="flex items-center gap-3 rounded-xl border border-primary-blue/10 bg-white p-4 shadow-sm"
+              >
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-green/20 font-extrabold text-dark-green">
+                  ✓
+                </span>
+                <span className="text-sm font-semibold text-dark-blue">
+                  {benefit}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="tel:+919773870268"
+            className="mt-8 inline-flex rounded-lg bg-primary-green px-6 py-3 font-bold text-text-color transition-colors hover:bg-dark-green hover:text-white"
+          >
+            Call +91 9773870268
+          </a>
+        </div>
+
+        <div className="min-w-0">
+          <StickyContactForm sticky={false} />
+        </div>
+      </div>
+    </section>
   );
+}
+
+function BlogFallback() {
+  return (
+    <section className="min-h-[65vh] bg-background px-5 py-24 text-center">
+      <h1 className="text-4xl font-extrabold text-dark-blue">Industry Insights</h1>
+      <p className="mx-auto mt-5 max-w-xl leading-8 text-text-color/75">
+        Explore environmental compliance, biogas and recycling insights.
+        To display articles here, export a React component named Blogs, BlogPage, or Blog
+        (or as the default) from Pages/Blogs/Blogs.tsx.
+      </p>
+      <a
+        href="#/contact"
+        className="mt-8 inline-flex rounded-lg bg-primary-green px-6 py-3 font-bold text-text-color hover:bg-dark-green hover:text-white"
+      >
+        Contact Us →
+      </a>
+    </section>
+  );
+}
+
+function getHash() {
+  return window.location.hash || '#home';
+}
+
+export default function App() {
+  const [currentHash, setCurrentHash] = useState(getHash);
 
   useEffect(() => {
-    const handleHashChange = () => {
-      setCurrentHash(window.location.hash);
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-
-    return () => {
-      window.removeEventListener(
-        'hashchange',
-        handleHashChange
-      );
-    };
+    const onHashChange = () => setCurrentHash(getHash());
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
   const isAboutPage = currentHash === '#/about';
-  const isBlogPage = currentHash === '#/blogs';
+  const isBlogsPage =
+    currentHash === '#/blogs' || currentHash.startsWith('#/blogs/');
+  const isContactPage = currentHash === '#/contact';
+  const isIndustriesPage = currentHash === '#/industries';
+  const isHomepage =
+    !isAboutPage && !isBlogsPage && !isContactPage && !isIndustriesPage;
 
   useEffect(() => {
-    if (isAboutPage || isBlogPage) {
+    if (!isHomepage) {
       window.scrollTo(0, 0);
       return;
     }
 
-    const sectionId = currentHash.replace('#', '');
+    const sectionId = currentHash.startsWith('#/')
+      ? 'home'
+      : currentHash.slice(1) || 'home';
 
-    if (!sectionId || sectionId.includes('/')) {
-      return;
-    }
-
-    requestAnimationFrame(() => {
+    const frame = requestAnimationFrame(() => {
       document.getElementById(sectionId)?.scrollIntoView({
         behavior: 'smooth',
+        block: 'start',
       });
     });
-  }, [currentHash, isAboutPage, isBlogPage]);
+    return () => cancelAnimationFrame(frame);
+  }, [currentHash, isHomepage]);
 
   return (
-    <div className="website">
-
-      {/* NAVIGATION */}
-      <header className="navbar">
-        <a href="#home" className="brand">
-          <img
-            src={logo}
-            alt="Compliance Mate Logo"
-            className="brand-logo-image"
-          />
-        </a>
-
-        <nav className="nav-links" aria-label="Main navigation">
-          <a href="#home">Home</a>
-          <a href="#/about">About Us</a>
-          <a href="#services">Services</a>
-          <a href="#industries">Industries</a>
-          <a href="#/blogs">Blogs</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <a href="#contact" className="nav-cta">
-          Get Consultation <span>↗</span>
-        </a>
-      </header>
-
-      <main>
+    <div className="flex min-h-screen flex-col bg-background text-text-color">
+      <Navbar logoSrc={logo} />
+      <main className="min-w-0 flex-1">
         {isAboutPage ? (
-          /* DEDICATED ABOUT US PAGE */
           <About />
-        ) : isBlogPage ? (
-          /* BLOGS PAGE */
-          <Blogs />
+        ) : isContactPage ? (
+          <ContactPage />
+        ) : isIndustriesPage ? (
+          <Industries />
+        ) : isBlogsPage ? (
+          BlogsPage ? <BlogsPage /> : <BlogFallback />
         ) : (
-          <>
-            {/* HERO SECTION */}
-            <section className="hero" id="home">
-              <div className="hero-content">
-                <span className="eyebrow">
-                  <span className="green-dot"></span>
-                  COMPLIANCE · CONSULTANCY · SUSTAINABILITY
-                </span>
-
-                <h1>
-                  Simplifying Compliance.
-                  <span>
-                    {' '}Empowering Sustainable Growth.
-                  </span>
-                </h1>
-
-                <p className="hero-description">
-                  Your trusted partner for environmental
-                  compliance, licensing, project consultancy
-                  and recycling plant development. We help
-                  businesses move forward with clarity
-                  and confidence.
-                </p>
-
-                <div className="hero-actions">
-                  <a
-                    href="#services"
-                    className="primary-button"
-                  >
-                    Explore Our Services <span>→</span>
-                  </a>
-
-                  <a
-                    href="#/about"
-                    className="text-button"
-                  >
-                    Discover Compliance Mate ↗
-                  </a>
-                </div>
-
-                <div className="hero-trust">
-                  <span className="trust-check">✓</span>
-                  Practical guidance for compliance
-                  and project development
-                </div>
-              </div>
-
-              {/* HERO VISUAL */}
-              <div className="hero-visual">
-                <div className="visual-circle circle-one"></div>
-                <div className="visual-circle circle-two"></div>
-
-                <div className="main-visual-card">
-                  <div className="visual-card-header">
-                    <span className="visual-icon">CM</span>
-
-                    <span className="visual-status">
-                      Sustainable Solutions
-                    </span>
-                  </div>
-
-                  <div className="visual-globe">
-                    <span>🌍</span>
-                  </div>
-
-                  <h2>Building a Better Tomorrow</h2>
-
-                  <p>
-                    Compliance, innovation and sustainability
-                    working together.
-                  </p>
-
-                  <div className="visual-tags">
-                    <span>Compliance</span>
-                    <span>Innovation</span>
-                    <span>Growth</span>
-                  </div>
-                </div>
-
-                <div className="floating-label">
-                  <span className="floating-check">✓</span>
-
-                  <div>
-                    <strong>One Trusted Partner</strong>
-                    <p>From planning to compliance</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* SERVICES SECTION */}
-            <section
-              className="services-section"
-              id="services"
-            >
-              <div className="section-heading">
-                <span className="section-label">
-                  WHAT WE DO
-                </span>
-
-                <h2>
-                  Complete Solutions for
-                  <span> Business Growth</span>
-                </h2>
-
-                <p>
-                  We simplify complex compliance
-                  requirements and support businesses
-                  throughout their project journey.
-                </p>
-              </div>
-
-              <div className="services-grid">
-                {services.map((service) => (
-                  <article
-                    className="service-card"
-                    key={service.number}
-                  >
-                    <span className="service-number">
-                      {service.number}
-                    </span>
-
-                    <span className="service-tag">
-                      {service.tag}
-                    </span>
-
-                    <h3>{service.title}</h3>
-
-                    <p>{service.description}</p>
-
-                    <a
-                      href="#contact"
-                      className="service-link"
-                    >
-                      Know More <span>↗</span>
-                    </a>
-                  </article>
-                ))}
-              </div>
-            </section>
-
-            {/* INDUSTRIES SECTION */}
-            <section
-              className="industries-section"
-              id="industries"
-            >
-              <div className="section-heading">
-                <span className="section-label">
-                  INDUSTRIES WE SERVE
-                </span>
-
-                <h2>
-                  Supporting the Future of
-                  <span>
-                    {' '}Recycling & Sustainability
-                  </span>
-                </h2>
-
-                <p>
-                  Specialized consultancy across emerging
-                  recycling and waste-management industries.
-                </p>
-              </div>
-
-              <div className="industry-grid">
-                {industries.map((industry, index) => (
-                  <div
-                    className="industry-card"
-                    key={industry}
-                  >
-                    <span className="industry-number">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-
-                    <h3>{industry}</h3>
-
-                    <span className="industry-arrow">
-                      ↗
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* ABOUT PREVIEW */}
-            <section
-              className="about-section"
-              id="about"
-            >
-              <div className="about-content">
-                <span className="section-label">
-                  ABOUT COMPLIANCE MATE
-                </span>
-
-                <h2>
-                  Your Compliance Challenges.
-                  <span> Our Commitment.</span>
-                </h2>
-
-                <p>
-                  At Compliance Mate, we understand that
-                  navigating environmental regulations
-                  and establishing recycling projects
-                  can be challenging.
-                </p>
-
-                <p>
-                  Our aim is to simplify the process
-                  through practical consultancy,
-                  regulatory guidance and project-focused
-                  solutions.
-                </p>
-
-                <a
-                  href="#/about"
-                  className="primary-button"
-                >
-                  Learn More About Us →
-                </a>
-              </div>
-
-              <div className="about-visual">
-                <div className="about-symbol">CM</div>
-
-                <h3>
-                  Compliance Meets Sustainability
-                </h3>
-
-                <p>
-                  Helping businesses make informed
-                  decisions for a more sustainable future.
-                </p>
-              </div>
-            </section>
-
-            {/* BLOGS PREVIEW */}
-            <section className="home-blog-preview">
-              <div className="section-heading">
-                <span className="section-label">
-                  KNOWLEDGE & INSIGHTS
-                </span>
-
-                <h2>
-                  Explore Our Latest
-                  <span> Industry Insights</span>
-                </h2>
-
-                <p>
-                  Discover practical information about
-                  environmental compliance, recycling
-                  technologies and sustainable businesses.
-                </p>
-
-                <a
-                  href="#/blogs"
-                  className="primary-button"
-                >
-                  Explore All Blogs →
-                </a>
-              </div>
-            </section>
-
-            {/* CONTACT SECTION */}
-            <section
-              className="contact-section"
-              id="contact"
-            >
-              <span className="section-label">
-                LET&apos;S WORK TOGETHER
-              </span>
-
-              <h2>
-                Have a Project in Mind?
-                <span> Let&apos;s Make It Happen.</span>
-              </h2>
-
-              <p>
-                Connect with Compliance Mate for
-                environmental compliance, licensing
-                and recycling project requirements.
-              </p>
-
-              <a
-                href="mailto:info@compliancemate.com"
-                className="primary-button"
-              >
-                Send an Enquiry →
-              </a>
-            </section>
-          </>
+          <Home />
         )}
       </main>
-
-      {/* FOOTER */}
-      <footer className="footer">
-        <a href="#home" className="brand">
-          <img
-            src={logo}
-            alt="Compliance Mate Logo"
-            className="brand-logo-image"
-          />
-        </a>
-
-        <p>
-          Compliance. Sustainability. Growth.
-        </p>
-
-        <span>
-          © 2026 Compliance Mate.
-          All rights reserved.
-        </span>
-      </footer>
+      <Footer logoSrc={logo} />
     </div>
   );
 }
-
-export default App;
