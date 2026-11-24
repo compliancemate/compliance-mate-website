@@ -1,0 +1,35 @@
+
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  font-family: 'Inter', Arial, sans-serif;
+  background: #ffffff;
+  color: #153849;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  cursor: pointer;
+}
+
+::selection {
+  background: #55bd70;
+  color: white;
+}
