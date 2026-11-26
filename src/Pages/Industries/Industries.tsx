@@ -34,96 +34,96 @@ const industries: Industry[] = [
     ],
     icon: '♻',
   },
-  {
-    id: '02',
-    title: 'Lithium-Ion Battery Recycling',
-    category: 'BATTERY RECYCLING',
-    description:
-      'Technical and regulatory consultancy for lithium-ion battery recycling and material recovery projects.',
-    details:
-      'Our consultancy services support project planning for battery dismantling, shredding, black mass recovery and applicable recycling technologies, along with environmental approvals and feasibility assessment.',
-    services: [
-      'Battery Recycling Plant Setup',
-      'Machinery & Technology Selection',
-      'Black Mass Processing Consultancy',
-      'Environmental Approvals',
-      'Project Feasibility & DPR',
-      'Regulatory Compliance Guidance',
-    ],
-    icon: '▣',
-  },
-  {
-    id: '03',
-    title: 'E-Waste Recycling',
-    category: 'ELECTRONIC WASTE',
-    description:
-      'Consultancy for establishing and operating compliant electronic waste recycling and processing facilities.',
-    details:
-      'We provide guidance on e-waste recycling project planning, machinery requirements, environmental approvals, EPR obligations and documentation for applicable waste management operations.',
-    services: [
-      'E-Waste Recycling Plant Setup',
-      'Recycling Machinery Planning',
-      'Environmental Licensing',
-      'EPR Compliance Assistance',
-      'DPR & Project Feasibility',
-      'Operational Compliance Guidance',
-    ],
-    icon: '▤',
-  },
-  {
-    id: '04',
-    title: 'Plastic Waste Recycling',
-    category: 'PLASTIC RECYCLING',
-    description:
-      'Project consultancy for plastic recycling facilities and sustainable plastic waste management.',
-    details:
-      'We assist promoters with PET, HDPE, LDPE and PP recycling project planning, machinery selection, licensing requirements, plastic waste processing and EPR-related obligations.',
-    services: [
-      'Plastic Recycling Plant Consultancy',
-      'PET, HDPE, LDPE & PP Processing',
-      'Machinery Selection Guidance',
-      'CTE & CTO Assistance',
-      'Plastic EPR Registration',
-      'Project Reports & Feasibility',
-    ],
-    icon: '♻',
-  },
-  {
-    id: '05',
-    title: 'Used Oil Recycling',
-    category: 'OIL & INDUSTRIAL WASTE',
-    description:
-      'Regulatory and technical support for used oil recycling and industrial resource recovery projects.',
-    details:
-      'Our consultancy covers feasibility assessment, technology and machinery planning, applicable hazardous waste approvals and environmental compliance for used oil recycling projects.',
-    services: [
-      'Used Oil Recycling Consultancy',
-      'Technology Assessment',
-      'Hazardous Waste Authorization',
-      'Environmental Approvals',
-      'DPR & Feasibility Reports',
-      'Regulatory Documentation',
-    ],
-    icon: '◉',
-  },
-  {
-    id: '06',
-    title: 'Industrial Waste Management',
-    category: 'WASTE MANAGEMENT',
-    description:
-      'Environmental compliance and consultancy support for industrial waste processing and management operations.',
-    details:
-      'We help businesses understand applicable waste management regulations, identify licensing requirements and plan responsible industrial waste handling, processing and recycling projects.',
-    services: [
-      'Environmental Compliance',
-      'Hazardous Waste Authorization',
-      'Waste Processing Consultancy',
-      'Consent to Establish & Operate',
-      'Waste Management Planning',
-      'Regulatory Documentation',
-    ],
-    icon: '▥',
-  },
+  // {
+  //   id: '02',
+  //   title: 'Lithium-Ion Battery Recycling',
+  //   category: 'BATTERY RECYCLING',
+  //   description:
+  //     'Technical and regulatory consultancy for lithium-ion battery recycling and material recovery projects.',
+  //   details:
+  //     'Our consultancy services support project planning for battery dismantling, shredding, black mass recovery and applicable recycling technologies, along with environmental approvals and feasibility assessment.',
+  //   services: [
+  //     'Battery Recycling Plant Setup',
+  //     'Machinery & Technology Selection',
+  //     'Black Mass Processing Consultancy',
+  //     'Environmental Approvals',
+  //     'Project Feasibility & DPR',
+  //     'Regulatory Compliance Guidance',
+  //   ],
+  //   icon: '▣',
+  // },
+  // {
+  //   id: '03',
+  //   title: 'E-Waste Recycling',
+  //   category: 'ELECTRONIC WASTE',
+  //   description:
+  //     'Consultancy for establishing and operating compliant electronic waste recycling and processing facilities.',
+  //   details:
+  //     'We provide guidance on e-waste recycling project planning, machinery requirements, environmental approvals, EPR obligations and documentation for applicable waste management operations.',
+  //   services: [
+  //     'E-Waste Recycling Plant Setup',
+  //     'Recycling Machinery Planning',
+  //     'Environmental Licensing',
+  //     'EPR Compliance Assistance',
+  //     'DPR & Project Feasibility',
+  //     'Operational Compliance Guidance',
+  //   ],
+  //   icon: '▤',
+  // },
+  // {
+  //   id: '04',
+  //   title: 'Plastic Waste Recycling',
+  //   category: 'PLASTIC RECYCLING',
+  //   description:
+  //     'Project consultancy for plastic recycling facilities and sustainable plastic waste management.',
+  //   details:
+  //     'We assist promoters with PET, HDPE, LDPE and PP recycling project planning, machinery selection, licensing requirements, plastic waste processing and EPR-related obligations.',
+  //   services: [
+  //     'Plastic Recycling Plant Consultancy',
+  //     'PET, HDPE, LDPE & PP Processing',
+  //     'Machinery Selection Guidance',
+  //     'CTE & CTO Assistance',
+  //     'Plastic EPR Registration',
+  //     'Project Reports & Feasibility',
+  //   ],
+  //   icon: '♻',
+  // },
+  // {
+  //   id: '05',
+  //   title: 'Used Oil Recycling',
+  //   category: 'OIL & INDUSTRIAL WASTE',
+  //   description:
+  //     'Regulatory and technical support for used oil recycling and industrial resource recovery projects.',
+  //   details:
+  //     'Our consultancy covers feasibility assessment, technology and machinery planning, applicable hazardous waste approvals and environmental compliance for used oil recycling projects.',
+  //   services: [
+  //     'Used Oil Recycling Consultancy',
+  //     'Technology Assessment',
+  //     'Hazardous Waste Authorization',
+  //     'Environmental Approvals',
+  //     'DPR & Feasibility Reports',
+  //     'Regulatory Documentation',
+  //   ],
+  //   icon: '◉',
+  // },
+  // {
+  //   id: '06',
+  //   title: 'Industrial Waste Management',
+  //   category: 'WASTE MANAGEMENT',
+  //   description:
+  //     'Environmental compliance and consultancy support for industrial waste processing and management operations.',
+  //   details:
+  //     'We help businesses understand applicable waste management regulations, identify licensing requirements and plan responsible industrial waste handling, processing and recycling projects.',
+  //   services: [
+  //     'Environmental Compliance',
+  //     'Hazardous Waste Authorization',
+  //     'Waste Processing Consultancy',
+  //     'Consent to Establish & Operate',
+  //     'Waste Management Planning',
+  //     'Regulatory Documentation',
+  //   ],
+  //   icon: '▥',
+  // },
 ];
 
 const benefits = [

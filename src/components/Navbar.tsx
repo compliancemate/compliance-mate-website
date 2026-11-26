@@ -20,7 +20,7 @@ const navigationLinks = [
   },
   {
     name: 'Industries',
-    href: '#industries',
+    href: '#/industries',
   },
   {
     name: 'Blogs',
@@ -51,6 +51,39 @@ const serviceLinks = [
   },
 ];
 
+const blogMenu = [
+  {
+    title: 'All Blogs',
+    href: '#/blogs',
+  },
+  {
+    title: 'Biogas',
+    children: [
+      {
+        title: 'CBG Bank Loan Assistance',
+        href: '#/blogs/compressed-biogas-plant-bank-loan-assistance',
+      },
+      {
+        title: 'CBG Machinery & Plant Setup',
+        href: '#/blogs/compressed-biogas-plant-machinery-setup',
+      },
+      {
+        title: 'CBG Planning & Feasibility',
+        href: '#/blogs/compressed-biogas-project-planning-and-feasibility',
+      },
+      {
+        title: 'CBG Subsidies & Incentives',
+        href: '#/blogs/compressed-biogas-subsidies-and-incentives',
+      },
+    ],
+  },
+  {
+    title: 'License & Certification',
+    children: [],
+  },
+];
+
+
 export default function Navbar({
   logoSrc,
 }: NavbarProps) {
@@ -64,11 +97,16 @@ export default function Navbar({
   const [servicesOpen, setServicesOpen] =
     useState(false);
 
+  const [blogsOpen, setBlogsOpen] = useState(false);
+  const [mobileBlogsOpen, setMobileBlogsOpen] = useState(false);
+
   useEffect(() => {
     const updateHash = () => {
       setCurrentHash(window.location.hash || '#home');
       setMobileMenuOpen(false);
       setServicesOpen(false);
+      setBlogsOpen(false);
+      setMobileBlogsOpen(false);
     };
 
     window.addEventListener(
@@ -87,6 +125,8 @@ export default function Navbar({
   const closeMenus = () => {
     setMobileMenuOpen(false);
     setServicesOpen(false);
+    setBlogsOpen(false);
+    setMobileBlogsOpen(false);
   };
 
   const isActive = (href: string) => {
@@ -254,6 +294,97 @@ export default function Navbar({
               );
             }
 
+            if (link.name === 'Blogs') {
+              return (
+                <div
+                  key={link.name}
+                  className="relative"
+                  onMouseEnter={() => {
+                    setBlogsOpen(true);
+                    setServicesOpen(false);
+                  }}
+                  onMouseLeave={() => setBlogsOpen(false)}
+                >
+                  <div className="flex items-center">
+                    <a
+                      href="#/blogs"
+                      onClick={closeMenus}
+                      className={navLinkClass('#/blogs')}
+                      aria-current={isActive('#/blogs') ? 'page' : undefined}
+                    >
+                      Blogs
+                    </a>
+                    <button
+                      type="button"
+                      aria-label="Toggle blogs menu"
+                      aria-expanded={blogsOpen}
+                      aria-controls="cm-desktop-blogs"
+                      onClick={() => {
+                        setBlogsOpen((previous) => !previous);
+                        setServicesOpen(false);
+                      }}
+                      className="rounded-md p-1 text-dark-blue hover:bg-primary-blue/10"
+                    >
+                      <svg
+                        width="15" height="15" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" strokeWidth="2"
+                        strokeLinecap="round" strokeLinejoin="round"
+                        aria-hidden="true"
+                        className={`transition-transform ${blogsOpen ? 'rotate-180' : ''}`}
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {blogsOpen && (
+                    <div id="cm-desktop-blogs" className="absolute left-0 top-full z-50 w-80 pt-3">
+                      <div className="max-h-[75vh] overflow-y-auto rounded-xl border border-primary-blue/10 bg-white p-2 shadow-xl">
+                        <p className="border-b border-primary-blue/10 px-3 py-3 text-xs font-extrabold tracking-wider text-dark-green">
+                          EXPLORE OUR BLOGS
+                        </p>
+                        {blogMenu.map((section) =>
+                          section.href ? (
+                            <a
+                              key={section.title}
+                              href={section.href}
+                              onClick={closeMenus}
+                              className="my-1 block rounded-lg bg-primary-blue/10 px-3 py-3 text-sm font-bold text-primary-blue hover:bg-primary-green/15"
+                            >
+                              {section.title}
+                            </a>
+                          ) : (
+                            <details key={section.title} className="group/category border-b border-slate-100 last:border-0" open={section.title === 'Biogas'}>
+                              <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-3 text-sm font-bold text-dark-blue hover:bg-primary-green/10 [&::-webkit-details-marker]:hidden">
+                                {section.title}
+                                <span className="text-xs text-primary-blue group-open/category:rotate-180">⌄</span>
+                              </summary>
+                              <div className="pb-2 pl-3">
+                                {section.children?.length ? (
+                                  section.children.map((article) => (
+                                    <a
+                                      key={article.href}
+                                      href={article.href}
+                                      onClick={closeMenus}
+                                      className="block rounded-lg px-3 py-2.5 text-xs leading-5 text-text-color/80 hover:bg-primary-blue/5 hover:text-primary-blue"
+                                    >
+                                      {article.title}
+                                    </a>
+                                  ))
+                                ) : (
+                                  <p className="px-3 py-3 text-xs text-slate-500">New articles coming soon.</p>
+                                )}
+                              </div>
+                            </details>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
             return (
               <a
                 key={link.name}
@@ -358,6 +489,59 @@ export default function Navbar({
                 >
                   {link.name}
                 </a>
+
+                {/* MOBILE BLOGS DROPDOWN */}
+                {link.name === 'Blogs' && (
+                  <div className="ml-4 border-l-2 border-primary-green/40 pl-3">
+                    <button
+                      type="button"
+                      onClick={() => setMobileBlogsOpen((previous) => !previous)}
+                      aria-expanded={mobileBlogsOpen}
+                      className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-xs font-bold text-dark-blue hover:bg-primary-blue/5"
+                    >
+                      Browse Blog Categories
+                      <span aria-hidden="true">{mobileBlogsOpen ? '▲' : '▼'}</span>
+                    </button>
+                    {mobileBlogsOpen && (
+                      <div className="pb-2">
+                        {blogMenu.map((section) =>
+                          section.href ? (
+                            <a
+                              key={section.title}
+                              href={section.href}
+                              onClick={closeMenus}
+                              className="block rounded-lg px-3 py-2.5 text-xs font-semibold text-primary-blue hover:bg-primary-blue/5"
+                            >
+                              {section.title}
+                            </a>
+                          ) : (
+                            <details key={section.title} open={section.title === 'Biogas'}>
+                              <summary className="cursor-pointer rounded-lg px-3 py-2.5 text-xs font-bold text-dark-green">
+                                {section.title}
+                              </summary>
+                              <div className="pl-3">
+                                {section.children?.length ? (
+                                  section.children.map((article) => (
+                                    <a
+                                      key={article.href}
+                                      href={article.href}
+                                      onClick={closeMenus}
+                                      className="block rounded-lg px-3 py-2.5 text-xs leading-5 text-text-color/80 hover:bg-primary-blue/5"
+                                    >
+                                      {article.title}
+                                    </a>
+                                  ))
+                                ) : (
+                                  <p className="px-3 py-2 text-xs text-slate-500">New articles coming soon.</p>
+                                )}
+                              </div>
+                            </details>
+                          )
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* MOBILE SERVICE SUBLINKS */}
 

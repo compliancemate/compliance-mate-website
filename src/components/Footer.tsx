@@ -1,143 +1,241 @@
 
-import { useState } from 'react';
+import {
+  FaInstagram,
+  FaYoutube,
+  FaFacebookF,
+  FaLinkedinIn,
+  FaTwitter,
+  FaGoogle,
+  FaWhatsapp,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaArrowRight,
+} from 'react-icons/fa';
+
+import type { IconType } from 'react-icons';
 
 interface FooterProps {
   logoSrc?: string;
 }
 
+// ========================================
+// COMPANY CONTACT DETAILS
+// ========================================
+
+const PHONE = '8796711794';
+const EMAIL = 'info@compliancemate.co.in';
+
+const ADDRESS =
+  'H 161, Office, BSI Business Park, 09, Sector 63 Rd, H Block, Sector 63, Noida, Uttar Pradesh 201301';
+
+const MAP_URL =
+  'https://www.google.com/maps/search/?api=1&query=' +
+  encodeURIComponent(ADDRESS);
+
+const WHATSAPP_URL =
+  `https://wa.me/91${PHONE}?text=` +
+  encodeURIComponent(
+    'Hello Compliance Mate, I would like to enquire about your services.'
+  );
+
+// ========================================
+// SOCIAL MEDIA LINKS
+// Add your actual company profile URLs.
+// ========================================
+
+const SOCIAL_URLS = {
+  instagram: '',
+  youtube: '',
+  facebook: '',
+  linkedin: '',
+  twitter: '',
+};
+
+// ========================================
+// FOOTER NAVIGATION LINKS
+// ========================================
+
 const quickLinks = [
   { name: 'Home', href: '#home' },
   { name: 'About Us', href: '#/about' },
   { name: 'Services', href: '#services' },
-  { name: 'Industries', href: '#industries' },
+  { name: 'Industries', href: '#/industries' },
   { name: 'Blogs', href: '#/blogs' },
   { name: 'Contact Us', href: '#/contact' },
 ];
 
 const serviceLinks = [
+  { name: 'CBG & Biogas Plant Setup', href: '#services' },
+  { name: 'Licensing & Certification', href: '#services' },
+  { name: 'EPR Compliance', href: '#services' },
+  { name: 'DPR & Feasibility Reports', href: '#services' },
+  { name: 'Recycling Plant Consultancy', href: '#services' },
+  { name: 'Bank Loan Assistance', href: '#services' },
+];
+
+// ========================================
+// SOCIAL ICON CONFIGURATION
+// ========================================
+
+type SocialLink = {
+  name: string;
+  icon: IconType;
+  url: string;
+};
+
+const socialLinks: SocialLink[] = [
   {
-    name: 'CBG & Biogas Plant Setup',
-    href: '#/services/biogas',
+    name: 'Instagram',
+    icon: FaInstagram,
+    url: SOCIAL_URLS.instagram,
   },
   {
-    name: 'Licensing & Certification',
-    href: '#/services/licensing-certification',
+    name: 'YouTube',
+    icon: FaYoutube,
+    url: SOCIAL_URLS.youtube,
   },
   {
-    name: 'EPR Compliance',
-    href: '#services',
+    name: 'Facebook',
+    icon: FaFacebookF,
+    url: SOCIAL_URLS.facebook,
   },
   {
-    name: 'DPR & Feasibility Reports',
-    href: '#services',
+    name: 'LinkedIn',
+    icon: FaLinkedinIn,
+    url: SOCIAL_URLS.linkedin,
   },
   {
-    name: 'Recycling Plant Consultancy',
-    href: '#services',
+    name: 'Twitter / X',
+    icon: FaTwitter,
+    url: SOCIAL_URLS.twitter,
+  },
+  {
+    name: 'Google Maps',
+    icon: FaGoogle,
+    url: MAP_URL,
+  },
+  {
+    name: 'WhatsApp',
+    icon: FaWhatsapp,
+    url: WHATSAPP_URL,
   },
 ];
 
-const PHONE_NUMBER = '9773870268';
+// ========================================
+// FOOTER COMPONENT
+// ========================================
 
-export default function Footer({
-  logoSrc,
-}: FooterProps) {
-  const [email, setEmail] = useState('');
-
-  const handleNewsletterSubmit = (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
-    event.preventDefault();
-
-    // Newsletter integration is not configured.
-    // Redirect to the Contact Us page instead.
-    window.location.hash = '#/contact';
-  };
+export default function Footer({ logoSrc }: FooterProps) {
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-dark-blue text-white">
+    <footer className="w-full bg-[#00265E] text-white">
 
-      {/* TOP GRADIENT BORDER */}
-      <div className="h-1 w-full bg-gradient-to-r from-primary-blue via-primary-green to-accent-orange" />
+      {/* TOP ACCENT BORDER */}
 
-      {/* MAIN FOOTER CONTENT */}
-      <div className="mx-auto max-w-7xl px-5 pb-12 pt-16 sm:px-8 lg:px-10">
+      <div className="h-1 w-full bg-gradient-to-r from-[#005BB5] via-[#80C900] to-[#FF9800]" />
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+      {/* MAIN FOOTER */}
 
-          {/* COMPANY INFORMATION */}
+      <div className="mx-auto max-w-7xl px-5 pb-12 pt-16 sm:px-6 lg:px-8">
+
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+
+          {/* ==================================
+              COLUMN 1 - COMPANY INFORMATION
+          ================================== */}
+
           <div>
             <a
               href="#home"
-              className="inline-flex items-center gap-3"
-              aria-label="Compliance Mate Homepage"
+              aria-label="Compliance Mate Home"
+              className="inline-flex items-center"
             >
               {logoSrc ? (
                 <img
                   src={logoSrc}
                   alt="Compliance Mate Logo"
-                  className="h-16 w-auto max-w-48 rounded-md bg-white p-1.5 object-contain"
+                  className="h-auto max-h-24 w-auto max-w-52 rounded-xl bg-white p-3 object-contain"
                 />
               ) : (
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary-blue text-xl font-extrabold text-white ring-1 ring-white/20">
-                  CM
-                </div>
-              )}
-
-              {!logoSrc && (
-                <div>
-                  <strong className="block text-lg font-extrabold leading-tight text-white">
-                    COMPLIANCE MATE
-                  </strong>
-
-                  <span className="block text-[10px] font-semibold tracking-wider text-primary-green">
-                    COMPLIANCE · SUSTAINABILITY
-                  </span>
-                </div>
+                <span className="text-2xl font-extrabold text-[#80C900]">
+                  Compliance Mate
+                </span>
               )}
             </a>
 
-            <p className="mt-6 max-w-sm text-sm leading-7 text-white/75">
-              Compliance Mate provides consultancy for
-              environmental compliance, regulatory licensing,
-              compressed biogas projects, recycling plant
-              development and sustainable industrial growth.
+            <p className="mt-6 text-sm leading-8 text-white/75">
+              Compliance Mate provides professional consultancy
+              for environmental compliance, licensing,
+              compressed biogas plant setup, recycling
+              projects, bankable DPR preparation and
+              sustainable industrial development.
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-2">
-              {[
-                'Compliance',
-                'Consultancy',
-                'Sustainability',
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-white/20 px-3 py-1.5 text-[10px] font-semibold text-white/85"
-                >
-                  {tag}
-                </span>
-              ))}
+            {/* SOCIAL MEDIA ICONS */}
+
+            <h3 className="mt-7 text-sm font-extrabold uppercase tracking-wider text-[#80C900]">
+              Connect With Us
+            </h3>
+
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+
+                if (!social.url) {
+                  return (
+                    <span
+                      key={social.name}
+                      title={`${social.name} profile link not configured`}
+                      aria-label={`${social.name} link coming soon`}
+                      className="flex h-10 w-10 cursor-not-allowed items-center justify-center rounded-xl border border-white/15 bg-white/5 text-white/35"
+                    >
+                      <Icon size={18} />
+                    </span>
+                  );
+                }
+
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    title={social.name}
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-white transition-all duration-300 hover:-translate-y-1 hover:border-[#80C900] hover:bg-[#80C900] hover:text-[#00265E]"
+                  >
+                    <Icon size={18} />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
-          {/* QUICK LINKS */}
+          {/* ==================================
+              COLUMN 2 - QUICK LINKS
+          ================================== */}
+
           <div>
-            <h3 className="text-base font-extrabold text-primary-green">
+            <h3 className="text-xl font-extrabold text-[#80C900]">
               Quick Links
             </h3>
 
-            <div className="mt-4 h-0.5 w-12 bg-accent-orange" />
+            <div className="mt-5 h-1 w-14 rounded-full bg-[#FF9800]" />
 
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-8 space-y-4">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="group inline-flex items-center gap-2 text-sm text-white/75 transition-colors hover:text-golden-yellow"
+                    className="group inline-flex items-center gap-3 text-sm text-white/75 transition-colors hover:text-[#80C900]"
                   >
-                    <span className="text-primary-green transition-transform group-hover:translate-x-1">
-                      ›
-                    </span>
+                    <FaArrowRight
+                      size={10}
+                      className="text-[#80C900] transition-transform group-hover:translate-x-1"
+                    />
+
                     {link.name}
                   </a>
                 </li>
@@ -145,24 +243,29 @@ export default function Footer({
             </ul>
           </div>
 
-          {/* OUR SERVICES */}
+          {/* ==================================
+              COLUMN 3 - OUR SERVICES
+          ================================== */}
+
           <div>
-            <h3 className="text-base font-extrabold text-primary-green">
+            <h3 className="text-xl font-extrabold text-[#80C900]">
               Our Services
             </h3>
 
-            <div className="mt-4 h-0.5 w-12 bg-accent-orange" />
+            <div className="mt-5 h-1 w-14 rounded-full bg-[#FF9800]" />
 
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-8 space-y-4">
               {serviceLinks.map((service) => (
                 <li key={service.name}>
                   <a
                     href={service.href}
-                    className="group inline-flex items-start gap-2 text-sm leading-6 text-white/75 transition-colors hover:text-golden-yellow"
+                    className="group inline-flex items-start gap-3 text-sm leading-6 text-white/75 transition-colors hover:text-[#80C900]"
                   >
-                    <span className="text-primary-green transition-transform group-hover:translate-x-1">
-                      ›
-                    </span>
+                    <FaArrowRight
+                      size={10}
+                      className="mt-1.5 shrink-0 text-[#80C900] transition-transform group-hover:translate-x-1"
+                    />
+
                     {service.name}
                   </a>
                 </li>
@@ -170,125 +273,124 @@ export default function Footer({
             </ul>
           </div>
 
-          {/* CONTACT INFORMATION */}
+          {/* ==================================
+              COLUMN 4 - CONTACT DETAILS
+          ================================== */}
+
           <div>
-            <h3 className="text-base font-extrabold text-primary-green">
+            <h3 className="text-xl font-extrabold text-[#80C900]">
               Contact Us
             </h3>
 
-            <div className="mt-4 h-0.5 w-12 bg-accent-orange" />
+            <div className="mt-5 h-1 w-14 rounded-full bg-[#FF9800]" />
 
-            <p className="mt-6 text-sm leading-7 text-white/75">
+            <p className="mt-8 text-sm leading-7 text-white/75">
               Need help with environmental licensing,
-              EPR registration, biogas plant setup or
-              recycling project consultancy?
+              CBG projects or recycling consultancy?
+              Get in touch with Compliance Mate.
             </p>
 
+            {/* PHONE NUMBER */}
+
             <a
-              href={`tel:+91${PHONE_NUMBER}`}
-              className="mt-5 flex items-center gap-3 text-sm font-semibold text-white transition-colors hover:text-golden-yellow"
+              href={`tel:+91${PHONE}`}
+              className="mt-6 flex items-center gap-4 text-sm font-semibold text-white transition-colors hover:text-[#80C900]"
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/10 text-primary-green">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="19"
-                  height="19"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 5.18 2 2 0 0 1 5.08 3h3a2 2 0 0 1 2 1.72c.12.96.35 1.9.68 2.8a2 2 0 0 1-.45 2.11L9.09 10.9a16 16 0 0 0 4 4l1.27-1.22a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.68A2 2 0 0 1 22 16.92Z" />
-                </svg>
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#80C900]">
+                <FaPhoneAlt size={18} />
               </span>
 
-              +91 {PHONE_NUMBER}
+              <span>+91 {PHONE}</span>
             </a>
 
+            {/* EMAIL ADDRESS */}
+
             <a
-              href="#/contact"
-              className="mt-6 inline-flex items-center justify-center gap-2 rounded-lg bg-primary-green px-5 py-3 text-sm font-extrabold text-text-color transition-all hover:-translate-y-0.5 hover:bg-dark-green hover:text-white"
+              href={`mailto:${EMAIL}`}
+              className="mt-5 flex items-start gap-4 text-sm text-white/85 transition-colors hover:text-[#80C900]"
             >
-              Get Consultation ↗
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#80C900]">
+                <FaEnvelope size={18} />
+              </span>
+
+              <span className="min-w-0 break-all pt-3">
+                {EMAIL}
+              </span>
+            </a>
+
+            {/* OFFICE ADDRESS */}
+
+            <a
+              href={MAP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 flex items-start gap-4 text-sm leading-7 text-white/85 transition-colors hover:text-[#80C900]"
+            >
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#80C900]">
+                <FaMapMarkerAlt size={19} />
+              </span>
+
+              <span className="min-w-0 flex-1">
+                {ADDRESS}
+
+                <span className="mt-2 block text-xs font-bold text-[#80C900]">
+                  View on Google Maps →
+                </span>
+              </span>
+            </a>
+
+            {/* WHATSAPP CTA */}
+
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-7 inline-flex items-center gap-3 rounded-xl bg-[#80C900] px-6 py-3.5 text-sm font-extrabold text-[#00265E] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-lg"
+            >
+              <FaWhatsapp size={21} />
+              Chat on WhatsApp
             </a>
           </div>
         </div>
 
-        {/* CONTACT / UPDATES STRIP */}
-        <div className="mt-14 grid grid-cols-1 items-center gap-6 rounded-2xl border border-white/15 bg-white/5 p-6 md:grid-cols-2 md:p-8">
-          <div>
-            <h3 className="text-xl font-extrabold text-white">
-              Have a Project in Mind?
-            </h3>
+        {/* ==================================
+            FOOTER BOTTOM SECTION
+        ================================== */}
 
-            <p className="mt-2 text-sm leading-7 text-white/70">
-              Discuss your compliance, licensing or
-              sustainable industrial project with our team.
+        <div className="mt-14 border-t border-white/15 pt-7">
+          <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
+
+            <p className="text-xs leading-6 text-white/65">
+              © {currentYear} Compliance Mate.
+              All Rights Reserved.
             </p>
-          </div>
 
-          <form
-            onSubmit={handleNewsletterSubmit}
-            className="flex flex-col gap-3 sm:flex-row"
-          >
-            <label htmlFor="footer-email" className="sr-only">
-              Email address
-            </label>
+            <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-white/65">
+              <a
+                href="#/contact"
+                className="transition-colors hover:text-[#80C900]"
+              >
+                Contact Us
+              </a>
 
-            <input
-              id="footer-email"
-              type="email"
-              required
-              value={email}
-              onChange={(event) =>
-                setEmail(event.target.value)
-              }
-              placeholder="Enter your email address"
-              className="min-w-0 flex-1 rounded-lg border border-white/20 bg-white px-4 py-3 text-sm text-text-color outline-none transition-all placeholder:text-text-color/45 focus:border-primary-green focus:ring-2 focus:ring-primary-green/20"
-            />
+              <a
+                href="#/about"
+                className="transition-colors hover:text-[#80C900]"
+              >
+                About Us
+              </a>
 
-            <button
-              type="submit"
-              className="shrink-0 rounded-lg bg-primary-blue px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-primary-green hover:text-text-color"
-            >
-              Contact Us →
-            </button>
-          </form>
-        </div>
+              <a
+                href="#/blogs"
+                className="transition-colors hover:text-[#80C900]"
+              >
+                Our Blogs
+              </a>
+            </div>
 
-        {/* BOTTOM BAR */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-5 border-t border-white/15 pt-7 text-center md:flex-row md:text-left">
-          <p className="text-xs text-white/60">
-            © {new Date().getFullYear()} Compliance Mate.
-            All rights reserved.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-5 text-xs font-medium text-white/65">
-            <a
-              href="#/about"
-              className="transition-colors hover:text-golden-yellow"
-            >
-              About Us
-            </a>
-
-            <a
-              href="#/contact"
-              className="transition-colors hover:text-golden-yellow"
-            >
-              Contact Us
-            </a>
-
-            <a
-              href="#/blogs"
-              className="transition-colors hover:text-golden-yellow"
-            >
-              Blogs
-            </a>
           </div>
         </div>
+
       </div>
     </footer>
   );

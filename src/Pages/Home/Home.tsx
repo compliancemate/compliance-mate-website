@@ -41,27 +41,27 @@ const services: Service[] = [
     description:
       'Bankable detailed project reports, CAPEX, OPEX, feasibility studies and financial projections.',
   },
-  {
-    id: '05',
-    title: 'Lithium-Ion Battery Recycling',
-    category: 'BATTERY RECYCLING',
-    description:
-      'Technical and regulatory support for battery recycling, black mass recovery and plant development.',
-  },
-  {
-    id: '06',
-    title: 'E-Waste Recycling',
-    category: 'E-WASTE SOLUTIONS',
-    description:
-      'Project planning, machinery guidance, environmental approvals and EPR registration assistance.',
-  },
-  {
-    id: '07',
-    title: 'Plastic Waste Recycling',
-    category: 'PLASTIC RECYCLING',
-    description:
-      'Consultancy for PET, HDPE, LDPE and PP recycling projects and associated compliance.',
-  },
+  // {
+  //   id: '05',
+  //   title: 'Lithium-Ion Battery Recycling',
+  //   category: 'BATTERY RECYCLING',
+  //   description:
+  //     'Technical and regulatory support for battery recycling, black mass recovery and plant development.',
+  // },
+  // {
+  //   id: '06',
+  //   title: 'E-Waste Recycling',
+  //   category: 'E-WASTE SOLUTIONS',
+  //   description:
+  //     'Project planning, machinery guidance, environmental approvals and EPR registration assistance.',
+  // },
+  // {
+  //   id: '07',
+  //   title: 'Plastic Waste Recycling',
+  //   category: 'PLASTIC RECYCLING',
+  //   description:
+  //     'Consultancy for PET, HDPE, LDPE and PP recycling projects and associated compliance.',
+  // },
   {
     id: '08',
     title: 'Project Financing Assistance',
@@ -73,10 +73,10 @@ const services: Service[] = [
 
 const industries = [
   'Compressed Biogas & Renewable Energy',
-  'Lithium-Ion Battery Recycling',
-  'E-Waste Recycling',
-  'Plastic Waste Recycling',
-  'Used Oil Recycling',
+  // 'Lithium-Ion Battery Recycling',
+  // 'E-Waste Recycling',
+  // 'Plastic Waste Recycling',
+  // 'Used Oil Recycling',
   'Industrial Waste Management',
 ];
 

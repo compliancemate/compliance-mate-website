@@ -1,5 +1,6 @@
-
 import { useId, useState } from "react";
+
+
 import type {
   ChangeEvent,
   FormEvent,
@@ -9,11 +10,11 @@ import type {
 // COMPLIANCE MATE - CONTACT CONFIGURATION
 // ======================================
 
-const CONTACT_PHONE = "9773870268";
+const CONTACT_PHONE = "8796711794";
 
 // Add your verified Compliance Mate email.
-const CONTACT_EMAIL = "";
-
+const CONTACT_EMAIL = "info@compliance.co.in";
+ 
 // Add your new Google Apps Script Web App URL
 // after configuring your Compliance Mate lead sheet.
 const GOOGLE_SCRIPT_URL = "";
