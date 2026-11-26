@@ -1,161 +1,31 @@
-
 @import "tailwindcss";
 
-/* ======================================
-   COMPLIANCE MATE BRAND COLORS
-====================================== */
-
-:root {
-  --primary-blue: #005BB5;
-  --dark-blue: #00265E;
-  --primary-green: #80C900;
-  --dark-green: #006400;
-  --accent-orange: #FF9800;
-  --golden-yellow: #FFCC00;
-  --text-color: #071B40;
-  --background: #FFFFFF;
-}
-
-/* ======================================
-   TAILWIND CSS V4 THEME
-====================================== */
-
-@theme inline {
-  --color-primary-blue: var(--primary-blue);
-  --color-dark-blue: var(--dark-blue);
-  --color-primary-green: var(--primary-green);
-  --color-dark-green: var(--dark-green);
-  --color-accent-orange: var(--accent-orange);
-  --color-golden-yellow: var(--golden-yellow);
-  --color-text-color: var(--text-color);
-  --color-background: var(--background);
-}
-
-/* ======================================
-   GLOBAL RESET
-====================================== */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  width: 100%;
-  min-width: 320px;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  scroll-behavior: smooth;
-  overflow-x: clip;
-}
-
-body {
-  display: block;
-  width: 100%;
-  min-width: 320px;
-  max-width: 100%;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  background: var(--background);
-  color: var(--text-color);
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  text-align: left;
-  overflow-x: clip;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ======================================
-   REACT ROOT
-====================================== */
-
-#root {
-  display: block;
-  width: 100%;
-  min-width: 0;
-  max-width: none;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  text-align: left;
-}
-
-/* ======================================
-   GENERAL ELEMENTS
-====================================== */
-
-img,
-svg,
-video {
-  max-width: 100%;
-}
-
-img {
-  height: auto;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
-}
-
-section[id] {
-  scroll-margin-top: 100px;
-}
-
-::selection {
-  background: var(--primary-green);
-  color: var(--dark-blue);
-}
-
-
-/* Header logo */
-header img,
-.site-header img {
-  display: block;
-  width: auto !important;
-  height: auto !important;
-  max-width: 250px !important;
-  max-height: 70px !important;
-  object-fit: contain;
-}
-
-/* Footer logo */
-footer img,
-.site-footer img {
-  display: block;
-  width: auto !important;
-  height: auto !important;
-  max-width: 220px !important;
-  max-height: 60px !important;
-  object-fit: contain;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  header img,
-  .site-header img {
-    max-width: 180px !important;
-    max-height: 55px !important;
-  }
-
-  footer img,
-  .site-footer img {
-    max-width: 180px !important;
-    max-height: 55px !important;
-  }
+/* Tailwind v4 theme tokens and animation utilities; no custom component CSS. */
+@theme {
+  --color-primary-blue: #005BB5;
+  --color-dark-blue: #00265E;
+  --color-primary-green: #80C900;
+  --color-dark-green: #006400;
+  --color-accent-orange: #FF9800;
+  --color-golden-yellow: #FFCC00;
+  --color-text-color: #071B40;
+  --color-background: #FFFFFF;
+  --font-sans: Inter, "Segoe UI", Arial, sans-serif;
+  --animate-fade-in: cm-fade .55s ease-out both;
+  --animate-hero-enter: cm-hero-enter .65s cubic-bezier(.2,.75,.25,1) both;
+  --animate-word-reveal: cm-word-reveal .55s cubic-bezier(.22,1,.36,1) both;
+  --animate-card-reveal: cm-card-reveal .45s cubic-bezier(.22,1,.36,1) both;
+  --animate-slide-progress: cm-slide-progress 3.5s linear both;
+  --animate-intro-bar: cm-slide-progress .72s ease-out both;
+  --animate-intro-exit: cm-intro-exit 1.05s ease-in-out both;
+  --animate-orbit-drift: cm-orbit-drift 9s ease-in-out infinite alternate;
+  --animate-page-enter: cm-page-enter .38s ease-out both;
+  @keyframes cm-fade { from { opacity: .65; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes cm-hero-enter { from { opacity: .15; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes cm-word-reveal { from { opacity: 0; transform: translateY(42%); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+  @keyframes cm-card-reveal { from { opacity: .2; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes cm-slide-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes cm-intro-exit { 0%, 68% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-18px); } }
+  @keyframes cm-orbit-drift { from { transform: translate(0,0); } to { transform: translate(-14px,10px); } }
+  @keyframes cm-page-enter { from { opacity: .8; } to { opacity: 1; } }
 }

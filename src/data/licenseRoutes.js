@@ -1,0 +1,15 @@
+import { licenseBase, licenseCategories } from './licenseData';
+import ConsentToEstablish from '../pages/services/licensing/ConsentToEstablish';
+import ConsentToOperate from '../pages/services/licensing/ConsentToOperate';
+import HazardousWasteAuthorization from '../pages/services/licensing/HazardousWasteAuthorization';
+import BiomedicalWasteAuthorization from '../pages/services/licensing/BiomedicalWasteAuthorization';
+import HazardousWasteImportAuthorization from '../pages/services/licensing/HazardousWasteImportAuthorization';
+import ExtendedProducerResponsibility from '../pages/services/licensing/ExtendedProducerResponsibility';
+import CompulsoryRegistrationScheme from '../pages/services/licensing/CompulsoryRegistrationScheme';
+import IndianStandardsInstitute from '../pages/services/licensing/IndianStandardsInstitute';
+import ForeignManufacturersCertificationScheme from '../pages/services/licensing/ForeignManufacturersCertificationScheme';
+import LegalMetrologyPackagedCommodities from '../pages/services/licensing/LegalMetrologyPackagedCommodities';
+import WirelessPlanningCommission from '../pages/services/licensing/WirelessPlanningCommission';
+import DirectorateGeneralForeignTrade from '../pages/services/licensing/DirectorateGeneralForeignTrade';
+const components = { ConsentToEstablish, ConsentToOperate, HazardousWasteAuthorization, BiomedicalWasteAuthorization, HazardousWasteImportAuthorization, ExtendedProducerResponsibility, CompulsoryRegistrationScheme, IndianStandardsInstitute, ForeignManufacturersCertificationScheme, LegalMetrologyPackagedCommodities, WirelessPlanningCommission, DirectorateGeneralForeignTrade };
+export const licenseRoutes = Object.fromEntries(licenseCategories.map(item => [`${licenseBase}/${item.slug}`, {Component:components[item.file],title:`${item.title} Consultancy in India`,description:item.description,draft:false}]));
